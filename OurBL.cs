@@ -37,125 +37,6 @@ namespace BusinessLogic
         }
 
 
-        //public static void fillTables(int num)
-        //{
-        //    Random r = new Random();
-
-        //    //generate random values for owners
-        //    for (int i = 0; i < num; i++)
-        //    {
-        //        int rName = r.Next(0, names.Length);
-        //        int rPhone = r.Next(0, 1000);
-        //        int rCity = r.Next(0, names.Length);
-
-        //        Owner o = new Owner(names[rName], "" + rPhone, cities[rCity]);
-        //        MySqlAccess.MySqlAccess.insertObject(o);
-        //    }
-
-        //    //generate random values for balls
-        //    for (int i = 0; i < num; i++)
-        //    {
-        //        int rballs = r.Next(0, balls_type.Length);
-        //        int rAmount = r.Next(1, 4);
-        //        int rPrice = rAmount * 6;
-
-
-        //        Balls o = new Balls(balls_type[rballs], rAmount, rPrice);
-        //        MySqlAccess.MySqlAccess.insertObject(o);
-        //    }
-
-        //    //generate random values for coons
-        //    for (int i = 0; i < num; i++)
-        //    {
-        //        int rPrice = 0;
-        //        int rCoons = r.Next(0, Coons_type.Length);
-        //        if (rCoons == 0)
-        //            rPrice = 1;
-        //        if (rCoons == 1)
-        //            rPrice = 3;
-        //        if (rCoons == 2)
-        //            rPrice = 6;
-
-        //        Coons o = new Coons(Coons_type[rCoons], rPrice);
-        //        MySqlAccess.MySqlAccess.insertObject(o);
-        //    }
-
-        //    //generate random values for decorate
-        //    for (int i = 0; i < num; i++)
-        //    {
-        //        int rPrice = 0;
-        //        int rdecorate = r.Next(0, decorate_type.Length);
-        //        if (rdecorate == 0)
-        //            rPrice = 1;
-        //        if (rdecorate == 1)
-        //            rPrice = 3;
-        //        if (rdecorate == 2)
-        //            rPrice = 6;
-        //        int ramount = 0;
-
-        //        Decorate o = new Decorate(decorate_type[rdecorate], ramount, rPrice);
-        //        MySqlAccess.MySqlAccess.insertObject(o);
-        //    }
-
-        //    //generate random values for icecream
-        //    for (int i = 0; i < num; i++)
-        //    {
-        //        int rIdBalls = r.Next(1, num);
-        //        int rIdCoons = r.Next(1, num);
-        //        int rIdDecorate = r.Next(1, num);
-        //        int price = 5; //need to be changed
-        //        Icecream o = new Icecream(rIdBalls, rIdCoons, rIdDecorate, price);
-        //        MySqlAccess.MySqlAccess.insertObject(o);
-        //    }
-
-        //    //generate random values for vuse
-        //    for (int i = 0; i < num; i++)
-        //    {
-        //        int rIdOwner = r.Next(1, num);
-        //        int rIdIcecream = r.Next(1, num);
-        //        VUse o = new VUse(rIdOwner, rIdIcecream);
-        //        MySqlAccess.MySqlAccess.insertObject(o);
-        //    }
-
-
-
-        //    //generate random values for orders
-        //    for (int i = 0; i < num; i++)
-        //    {
-        //        int rIdIcecream = r.Next(1, num);
-
-
-        //        //generate date string
-        //        int rYear = r.Next(1990, 2020);
-        //        int rMonth = r.Next(1, 13);
-        //        int rDate = r.Next(1, 29);
-        //        string orderDate = "" + rYear + "-" + rMonth + "-" + rDate;
-
-        //        //generate date string               
-        //        rDate = rDate + r.Next(1, 29);
-        //        if (rDate > 29)
-        //        {
-        //            rDate = rDate % 29;
-        //            rMonth = rMonth + 1;
-        //        }
-
-        //        if (rMonth > 12)
-        //        {
-        //            rMonth = 1;
-        //            rYear = rYear + 1;
-        //        }
-
-
-        //        string completedDate = "" + rYear + "-" + rMonth + "-" + rDate;
-
-        //        int rCompleted = r.Next(0, 2);
-        //        int rPayed = r.Next(0, 2);
-
-        //        Order o = new Order(rIdIcecream, orderDate, completedDate, rCompleted, rPayed);
-        //        MySqlAccess.MySqlAccess.insertObject(o);
-        //    }
-
-      // 
 
         public static ArrayList getTableData(string tableName)
         {
@@ -175,7 +56,7 @@ namespace BusinessLogic
             {
                 foreach (Object[] row in all)
                 {
-                    Balls o = new Balls((int)row[1], (int[])row[2], (int)row[3], (int)row[4]);
+                    Balls o = new Balls((int[])row[2], (int)row[3], (int)row[1]);
                     results.Add(o);
                 }
             }
@@ -184,7 +65,7 @@ namespace BusinessLogic
             {
                 foreach (Object[] row in all)
                 {
-                    Coons o = new((int)row[1],(string)row[2], (int)row[3]);
+                    Coons o = new Coons((int)row[1],(string)row[2],(int)row[3]);
                     results.Add(o);
                 }
             }
@@ -192,7 +73,7 @@ namespace BusinessLogic
             {
                 foreach (Object[] row in all)
                 {
-                    Decorate o = new Decorate((int)row[1], (string[])row[2], (int)row[3]);
+                    Decorate o = new Decorate((string[])row[2], (int)row[3]);
                     results.Add(o);
                 }
             }
@@ -200,7 +81,7 @@ namespace BusinessLogic
             {
                 foreach (Object[] row in all)
                 {
-                    VUse o = new VUse((int)row[1], (int)row[2], (int)row[3]);
+                    VUse o = new VUse((int)row[1], (int)row[2]);
                     results.Add(o);
                 }
             }
@@ -208,7 +89,7 @@ namespace BusinessLogic
             {
                 foreach (Object[] row in all)
                 {
-                    Order o = new Order((int)row[1], (int)row[2],(DateTime)row[3], (DateTime)row[4], (int)row[5]);
+                    Order o = new Order((int)row[1], (int)row[2],(string)row[3], (string)row[4], (int)row[5]);
                     results.Add(o);
                 }
             }
@@ -220,6 +101,10 @@ namespace BusinessLogic
         //type_ball = ze maarah misparim
         //kinda boolean array 
         //first index is true or false
+        internal static void update(object o,int _id)
+        {
+            MySqlAccess.MySqlAccess.Update(o,_id);
+        }
         public static int ballslogic(int amount_balls)
         {
             int price = 0;
@@ -268,7 +153,7 @@ namespace BusinessLogic
                 first[1] = price;                  //
                 return first;
             }
-            else if (tavnit == 1 && amount_balls >= 3)
+            else if (tavnit == 1 && amount_balls > 3)
             {
                 Console.WriteLine("you choose normal con and too many balls must be < 3");
                 return first;
@@ -305,8 +190,9 @@ namespace BusinessLogic
 
         //price hu shamur ezli
         //yaliot kfiluet be ball
-        //
-        public static int[] CreateThirdStep(string? deco, int[] type_of_ball, int price)// string tavnit
+        //static string[] decorate_type = { "Hot Chocolate", "Peanuts", "Maple" };
+        //static string[] balls_type = { "Mekupelet", "Chocolate", "Strawberry", "Vanilla", "Mint", "Lemon", "Orange", "Mango", "Blueberry", "Cherry", "Coffe" };
+        public static int[] CreateThirdStep(int deco, int[] type_of_ball, int price)// string tavnit
         {
             //{{0,1},{price}
             int zeroOne = 0;
@@ -317,41 +203,51 @@ namespace BusinessLogic
                 res[0] = 0; //not good
                 res[1] = price;
                 return res;
-            }
-            else if (deco == "Hot Chocolate" || deco == "Maple")
+            }//(deco == "Hot Chocolate" || deco == "Maple")
+            else if (deco == 0)
             {
+                Console.WriteLine("iam at else if 1 ");
                 for (int i = 0; i < type_of_ball.Length; i++)
                 {
-                    for (int j = 0; j < balls_type.Length; j++)
+
+                    //type_of_ball mahzik index
+                    if (balls_type[type_of_ball[i]] == "Chocolate" || balls_type[type_of_ball[i]] == "Mekupelet")
                     {
-                        //type_of_ball mahzik index
-                        if (type_of_ball[i] == j)
-                        {
-                            zeroOne = 0;//not valid
-                        }
+                        res[0] = 0;//not valid
+                        res[1] = price;
+                        Console.WriteLine("you cant choose Hot Chocolate  with meku or chocho balls");
+                        return res;
+
                     }
                 }
             }
-            res[0] = 0;
+
+            else if (deco == 2) //maple 
+            {
+                Console.WriteLine("iam at else if 2 ");
+                for (int i = 0; i < type_of_ball.Length; i++)
+                {
+
+                    //type_of_ball mahzik index
+                    if (balls_type[type_of_ball[i]] == "Vanilla")
+                    {
+                        res[0] = 0;//not valid
+                        res[1] = price;
+                        Console.WriteLine("you cant choose Maple  tapping with vanila");
+                        return res;
+
+                    }
+                }
+            }
+            Console.WriteLine("passed tapping");
+            res[0] = 1;
             res[1] = price;
 
             return res;
         }
-                   
-          
-        
+    
 
 
-        internal static void GenerateConnections(string tavnit, string[] type_of_ball, ArrayList user_tapping, int price, Owner o, int userInput, DateTime day, DateTime finish, int completed)
-        {
-
-
-        }
-
-        internal static void GenerateConnections(int orderId, string tavnit, string[] type_of_ball, ArrayList user_tapping, int price, Owner o, int userInput, DateTime day, DateTime finish, int completed)
-        {
-            throw new NotImplementedException();
-        }
 
         internal static void createBalls(Balls b)
         {
@@ -373,5 +269,22 @@ namespace BusinessLogic
         {
             MySqlAccess.MySqlAccess.insertObject(o);
         }
+
+        internal static void createIceCream(Icecream i)
+        {
+            MySqlAccess.MySqlAccess.insertObject(i);
+        }
+
+        internal static void createVuse(VUse v)
+        {
+            MySqlAccess.MySqlAccess.insertObject(v);
+        }
+
+        internal static void createSalle(Order or)
+        {
+            MySqlAccess.MySqlAccess.insertObject(or);
+        }
+
+       
     }
 }
