@@ -259,5 +259,10 @@ namespace BusinessEntities
             completed = v1;
             payed = v2;
         }
+
+        internal void update_complete_date(string day)
+        {
+           completeDate = day;
+        }
     }
 }

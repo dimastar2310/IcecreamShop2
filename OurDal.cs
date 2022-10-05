@@ -128,8 +128,8 @@ namespace MySqlAccess
                     "`idOrder` INT NOT NULL AUTO_INCREMENT," +
                     "`idIcecream` INT NULL," +
                     "`Completed` INT NULL DEFAULT 0," +
-                    "`OrderDate` VARCHAR(45) NULL," +
-                    "`CompleteDate` VARCHAR(45) NULL," + 
+                    "`OrderDate` VARCHAR(45)  NULL," +
+                    "`CompleteDate` VARCHAR(45)  NULL," + 
                     "`Payed` INT  NULL DEFAULT 0," +
                     "PRIMARY KEY (`idOrder`)," +
                     "FOREIGN KEY (idIcecream) REFERENCES Icecream(idIcecream));";
@@ -348,7 +348,7 @@ namespace MySqlAccess
             }
         }
 
-        public static ArrayList readAll(string tableName)
+        public static ArrayList readAll(string tableName) //po heshbonit le lakoah zarih liet
         {
             ArrayList all = new ArrayList();
 

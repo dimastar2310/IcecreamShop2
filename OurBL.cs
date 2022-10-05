@@ -47,7 +47,7 @@ namespace BusinessLogic
             {
                 foreach (Object[] row in all)
                 {
-                    Owner o = new Owner((int)row[1],(string)row[2], "" + row[3], (string)row[4]);
+                    Owner o = new Owner((int)row[1], (string)row[2], "" + row[3], (string)row[4]);
                     results.Add(o);
                 }
             }
@@ -65,7 +65,7 @@ namespace BusinessLogic
             {
                 foreach (Object[] row in all)
                 {
-                    Coons o = new Coons((int)row[1],(string)row[2],(int)row[3]);
+                    Coons o = new Coons((int)row[1], (string)row[2], (int)row[3]);
                     results.Add(o);
                 }
             }
@@ -89,7 +89,7 @@ namespace BusinessLogic
             {
                 foreach (Object[] row in all)
                 {
-                    Order o = new Order((int)row[1], (int)row[2],(string)row[3], (string)row[4], (int)row[5]);
+                    Order o = new Order((int)row[1], (int)row[2], (string)row[3], (string)row[4], (int)row[5]);
                     results.Add(o);
                 }
             }
@@ -101,9 +101,9 @@ namespace BusinessLogic
         //type_ball = ze maarah misparim
         //kinda boolean array 
         //first index is true or false
-        internal static void update(object o,int _id)
+        internal static void update(object o, int _id)
         {
-            MySqlAccess.MySqlAccess.Update(o,_id);
+            MySqlAccess.MySqlAccess.Update(o, _id);
         }
         public static int ballslogic(int amount_balls)
         {
@@ -130,6 +130,10 @@ namespace BusinessLogic
 
         }
         //haya zarih leahzir po object
+        //nahzir rak mehir kufsa 
+        //static string[] Coons_type = { "Normal Coon", "Special Coon", "Box" };
+
+        //ZE BETAHLES KUFSA MEHIR GLIDA YADUA
         public static int[] createFirst2step(int tavnit, int amount_balls, int[] first)//lets create balls object and tavnit
         { //ani ivne mehir po kvar 
           //tavnit => 0 normal cone 1 speacial cone 2 box
@@ -137,54 +141,58 @@ namespace BusinessLogic
             Console.WriteLine("amount balls  = {0}", amount_balls);
             Console.WriteLine("tavnit =  {0}", tavnit);
             int price = 0;
-            if (tavnit == 2) //po ani bone bdkika
+            if (tavnit == 0) //po ani bone bdkika avur gavia ragil
             {
+                int validator = 0;
                 if (amount_balls <= 3)
                 {
-                    price = ballslogic(amount_balls);
+                    validator = 1;//mehira hezliha
+                    price = 0;
                 }
                 else //amount_balls>3
                 {
-                    price = 6 * amount_balls + 18 + 5; //+5 mehir kufsa 
-
+                    //+5 mehir kufsa 
+                    validator = 0;
+                    price = 0;
+                    Console.WriteLine("you choose regular con and too many balls must be < 3");
 
                 }
-                first[0] = 1; //mehira hezliha
+                first[0] = validator; //mehira hezliha
                 first[1] = price;                  //
                 return first;
             }
-            else if (tavnit == 1 && amount_balls > 3)
+            else if (tavnit == 1 && amount_balls > 3) //speacial con
             {
-                Console.WriteLine("you choose normal con and too many balls must be < 3");
+                Console.WriteLine("you choose special con and too many balls must be < 3");
                 return first;
 
             }
-            else if (tavnit == 0 && amount_balls <= 3)
+            else if (tavnit == 2) //special cone
             {
                 //Console.WriteLine("iam at second else if");
-                price = ballslogic(amount_balls);
-
+                // price = ballslogic(amount_balls);
+                price = 5;
                 first[0] = 1;
                 first[1] = price;
                 return first;
 
             }
-            else if (tavnit == 1 && amount_balls <= 3)
-            {
-               // Console.WriteLine("you choose special con and too many balls must be < 3");
-                Console.WriteLine("iam at third else if");
+            //else if (tavnit == 1 && amount_balls <= 3)
+            //{
+            //    // Console.WriteLine("you choose special con and too many balls must be < 3");
+            //    Console.WriteLine("iam at third else if");
 
-                price = ballslogic(amount_balls);
-                first[0] = 1;
-                first[1] = price + 2; //biglal she hu meuhad
-                return first;
+            //    price = ballslogic(amount_balls);
+            //    first[0] = 1;
+            //    first[1] = price + 2; //biglal she hu meuhad
+            //    return first;
 
-            }
+            //}
 
-            Console.WriteLine("something wrong choose again please");
+            //Console.WriteLine("something wrong choose again please");
+            //return first;
+
             return first;
-
-
         }
         //static string[] decorate_type = { "Hot Chocolate", "Peanuts", "Maple" };
 
@@ -245,7 +253,7 @@ namespace BusinessLogic
 
             return res;
         }
-    
+
 
 
 
@@ -262,7 +270,7 @@ namespace BusinessLogic
 
         internal static void createTapping(Decorate d)
         {
-            MySqlAccess.MySqlAccess.insertObject(d); 
+            MySqlAccess.MySqlAccess.insertObject(d);
         }
 
         internal static void createBuyer(Owner o)
@@ -285,6 +293,37 @@ namespace BusinessLogic
             MySqlAccess.MySqlAccess.insertObject(or);
         }
 
-       
+        internal static int get_balls_price(int v)
+        {
+            int price = 0;
+            if (v < 0)
+            {
+                Console.WriteLine("please choose positive amount");
+            }
+            else if (v == 0)
+            {
+                price = 0;
+            }
+            else if (v == 1)
+            {
+                price = 7;
+            }
+            else if (v == 2)
+            {
+                price = 12;
+            }
+            else if (v == 3)
+            {
+                price = 18;
+
+            }
+            else
+            {
+                price = 18 + (v - 3) * 6;
+            }
+
+            return price;
+        }
+
     }
 }
