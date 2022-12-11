@@ -30,5 +30,7 @@
 1.	מומלץ להשתמש ב-Visual Studio Community 2022 , תשתית.Net 6.0  ושפת C#
 2.	עם זאת ניתן להשתמש בכל תשתית אחרת.
 
+https://dbdiagram.io/d
+
 ![alt text](https://github.com/dimastar2310/IcecreamShop2/blob/main/icecreamShopUML.png)  
 
